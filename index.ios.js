@@ -12,20 +12,37 @@ import {
   View
 } from 'react-native';
 
+const MOCK_DATA = [
+  {
+    id: '1',
+    title: 'Spacewalk',
+    description: 'Peaceful tones, stardust and quiet',
+  },
+  {
+    id: '2',
+    title: 'A Day in the Big City',
+    description: 'City traffic, voices and tones',
+  },
+]
+
 class Sleepytime extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        {
+          MOCK_DATA.map((item) => {
+            return (
+              <View key={item.id}>
+                <Text style={styles.title}>
+                 {item.title}
+                </Text>
+                <Text style={styles.description}>
+                 {item.description}
+                </Text>
+              </View>
+            );
+          })
+        }
       </View>
     );
   }
@@ -34,19 +51,19 @@ class Sleepytime extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    backgroundColor: '#F3F3F3',
+    padding: 10,
+    paddingTop: 20,
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  title: {
+    fontSize: 18,
+    fontWeight: '600',
+    marginTop: 10,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  description: {
+    fontSize: 16,
   },
 });
 
