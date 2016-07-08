@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -25,6 +25,28 @@ const MOCK_DATA = [
   },
 ]
 
+class SoundListItem extends Component {
+  static propTypes = {
+    title: PropTypes.string,
+    description: PropTypes.string,
+  };
+
+  render() {
+    const { description, title } = this.props;
+
+    return (
+      <View>
+        <Text style={styles.title}>
+         {title}
+        </Text>
+        <Text style={styles.description}>
+         {description}
+        </Text>
+      </View>
+    );
+  }
+}
+
 class Sleepytime extends Component {
   render() {
     return (
@@ -33,12 +55,10 @@ class Sleepytime extends Component {
           MOCK_DATA.map((item) => {
             return (
               <View key={item.id}>
-                <Text style={styles.title}>
-                 {item.title}
-                </Text>
-                <Text style={styles.description}>
-                 {item.description}
-                </Text>
+                <SoundListItem
+                  description={item.description}
+                  title={item.title}
+                />
               </View>
             );
           })
