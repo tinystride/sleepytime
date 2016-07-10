@@ -6,8 +6,10 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "lodash": "4.13.1",
     "react": "15.2.0",
-    "react-native": "0.29.0"
+    "react-native": "0.29.0",
+    "react-native-ios-network-audio": "0.0.8"
   },
   "devDependencies": {
     "babel-eslint": "6.1.0",

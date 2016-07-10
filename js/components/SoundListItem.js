@@ -4,27 +4,36 @@ import React, { Component, PropTypes } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  TouchableHighlight,
+  View,
 } from 'react-native';
 
 export default class SoundListItem extends Component {
   static propTypes = {
-    description: PropTypes.string,
-    title: PropTypes.string,
+    description: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    onPress: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+  }
+
+  handleOnPress = () => {
+    this.props.onPress(this.props.id);
   }
 
   render() {
     const { description, title } = this.props;
 
     return (
-      <View>
-        <Text style={styles.title}>
-          {title}
-        </Text>
-        <Text style={styles.description}>
-          {description}
-        </Text>
-      </View>
+      <TouchableHighlight onPress={this.handleOnPress}>
+        <View>
+          <Text style={styles.title}>
+            {title}
+          </Text>
+          <Text style={styles.description}>
+            {description}
+          </Text>
+        </View>
+      </TouchableHighlight>
     );
   }
 }
