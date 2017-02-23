@@ -18,19 +18,19 @@ const MOCK_DATA = [
     id: '1',
     title: 'Spacewalk',
     description: 'Peaceful tones, stardust and quiet',
-    url: 'https://mp3boobs.xyz/file/c291bmRjbG91ZC0yMzAxMjMyODA.mp3',
+    sound: 'star-gazing.mp3',
   },
   {
     id: '2',
     title: 'A Day in the Big City',
     description: 'City traffic, voices and tones',
-    url: 'https://mp3boobs.xyz/file/eW91dHViZS1IRUtMOFgtZUtzZw.mp3',
+    sound: 'city-lights.mp3',
   },
   {
     id: '3',
     title: 'Seaside Harbor Town',
     description: 'Rolling waves, distant seagulls',
-    url: 'https://mp3boobs.xyz/file/eW91dHViZS1qREFpYTV5T1VJcw.mp3',
+    sound: 'sounds-of-kauai.mp3',
   },
 ];
 
@@ -72,7 +72,7 @@ export default class App extends Component {
         {anyHasPlayed &&
           <MiniPlayer
             title={activeItem.title}
-            url={activeItem.url}
+            sound={activeItem.sound}
           />
         }
       </View>

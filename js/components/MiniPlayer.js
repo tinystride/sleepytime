@@ -2,21 +2,19 @@
 
 import React, { Component, PropTypes } from 'react';
 import {
-  NativeModules,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import Sound from 'react-native-sound';
 
 import COLORS from '../constants/colors';
 
-const audio = NativeModules.RNAudioPlayerURL;
-
 export default class MiniPlayer extends Component {
   static propTypes = {
+    sound: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
   }
 
   state = {
@@ -24,28 +22,43 @@ export default class MiniPlayer extends Component {
   }
 
   componentDidMount() {
-    this.initAudio();
+    this.setup();
     this.play();
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.url === this.props.url) { return; }
-    this.initAudio();
+    if (prevProps.sound === this.props.sound) { return; }
+    this.reset();
+    this.setup();
   }
 
-  initAudio() {
-    const {url} = this.props;
-    audio.initWithURL(url);
+  setup() {
+    const {sound} = this.props;
+
+    // TODO: return a promise. on init, await promise before play()
+    this.sound = new Sound(sound, Sound.MAIN_BUNDLE, (error) => {
+      if (error) {
+        // error
+      } else {
+        // success
+      }
+    });
+    this.sound.setNumberOfLoops(-1); // loop sound until .stop() is called
+  }
+
+  reset() {
+    this.sound.stop(); // do we really need this?
+    this.sound.release();
   }
 
   play() {
     this.setState({isPlaying: true});
-    audio.play();
+    this.sound.play();
   }
 
   pause() {
     this.setState({isPlaying: false});
-    audio.pause();
+    this.sound.pause();
   }
 
   handleTogglePlayPress = () => {
